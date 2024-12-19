@@ -14,14 +14,19 @@ services:
     image: t5-front-end-image
     expose:
       - "9000"  # front accesible via proxy
+    depends_on:
+      back-end:
+        condition: service_started
 
   proxy:
     build:
       context: ./proxy
       dockerfile: Dockerfile
-    image: t5-proxy-image
+    image: t6-proxy-image
     ports:
       - "80:80"  # proxy sur le port 80
     depends_on:
-      - back-end
-      - front-end
+      back-end:
+        condition: service_started
+      front-end:
+        condition: service_started
