@@ -1,0 +1,18 @@
+services:
+  back-end:
+    build:
+      context: ./back-end
+      dockerfile: Dockerfile
+    image: back-image
+    ports:
+      - "9999:4567"
+
+  front-end:
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+    image: front-image
+    ports:
+      - "8888:5678"
+    depends_on:
+      - back-end
