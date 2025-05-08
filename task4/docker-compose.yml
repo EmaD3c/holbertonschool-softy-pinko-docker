@@ -5,7 +5,9 @@ services:
       dockerfile: Dockerfile
     image: back-image
     ports:
-      - "9999:4567"
+      - "5252:5252"
+    expose:
+      - "5252"
 
   front-end:
     build:
@@ -13,6 +15,6 @@ services:
       dockerfile: Dockerfile
     image: front-image
     ports:
-      - "8888:5678"
+      - "9000:9000"
     depends_on:
       - back-end
